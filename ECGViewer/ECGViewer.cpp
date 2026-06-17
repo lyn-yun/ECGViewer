@@ -52,7 +52,7 @@ BOOL CECGViewerApp::InitInstance()
         m_gdiplusToken = 0;
     }
 
-    // Enable visual styles (use default MFC visual manager)
+    // 启用 MFC 视觉样式
     CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManager));
 
     // 设置应用程序标题
@@ -61,11 +61,9 @@ BOOL CECGViewerApp::InitInstance()
     // 注册文档模板（Doc/View 架构）
     RegisterDocTemplate();
 
-    // 标准 MFC SDI 模式：由 ProcessShellCommand 统一创建文档和框架
-    //   FileNew  → OnFileNew()  → 创建空文档 + 框架（OnDraw 显示"请打开文件"）
-    //   FileOpen → OnFileOpen() → 打开指定文件 + 框架
-    // 不要手动 new CMainFrame + LoadFrame，否则 CCreateContext 断开，
-    // View 的 m_pDocument 为空，导致"创建空文档失败"。
+    // 标准 MFC SDI 模式：ProcessShellCommand 统一创建文档和框架
+    // FileNew  → 创建空文档 + 框架（OnDraw 显示"请打开文件"）
+    // FileOpen → 打开指定文件 + 框架
     CCommandLineInfo cmdInfo;
     ParseCommandLine(cmdInfo);
 

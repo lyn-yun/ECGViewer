@@ -23,7 +23,7 @@ BEGIN
         MENUITEM "Fit Window(&F)\tF",      IDM_VIEW_ZOOM_FIT
         MENUITEM "Reset Zoom(&R)\tR",      IDM_VIEW_ZOOM_RESET
         MENUITEM SEPARATOR
-        MENUITEM "Toggle Grid(&G)\tG",     32781
+        MENUITEM "Toggle Grid(&G)\tG",     IDM_VIEW_TOGGLE_GRID
     END
     POPUP "Tools(&T)"
     BEGIN

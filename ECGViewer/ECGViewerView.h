@@ -61,6 +61,8 @@ protected:
     afx_msg void OnViewZoomIn();
     afx_msg void OnViewZoomOut();
     afx_msg void OnViewZoomFit();
+    afx_msg void OnViewZoomReset();
+    afx_msg void OnViewToggleGrid();
     afx_msg void OnToolsFilter();
     afx_msg void OnToolsDetectR();
 

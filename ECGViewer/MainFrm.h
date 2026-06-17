@@ -26,7 +26,7 @@ protected:
     afx_msg void OnDestroy();
 
     DECLARE_MESSAGE_MAP()
-    DECLARE_DYNAMIC(CMainFrame)
+    DECLARE_DYNCREATE(CMainFrame)
 
 private:
     CToolBar    m_wndToolBar;

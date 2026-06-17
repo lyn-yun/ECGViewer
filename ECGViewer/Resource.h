@@ -14,6 +14,7 @@
 #define IDM_TOOLS_FILTER         32778
 #define IDM_TOOLS_DETECT_R       32779
 #define IDM_HELP_ABOUT           32780
+#define IDM_VIEW_TOGGLE_GRID     32781
 
 // ---- 工具栏按钮 ID ----
 #define IDB_TOOLBAR_MAIN         130
@@ -45,7 +46,7 @@
 
 // ---- 图标 ----
 #define IDI_ICON_MAIN            300
-#define IDI_ICON_DOC             301
+#define IDI_ICON_DOC             302
 
 // ---- 加速键 ----
 #define IDR_ACCELERATOR1         400

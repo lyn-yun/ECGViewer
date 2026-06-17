@@ -43,6 +43,8 @@ BEGIN_MESSAGE_MAP(CECGViewerView, CScrollView)
     ON_COMMAND(IDM_VIEW_ZOOM_IN,     OnViewZoomIn)
     ON_COMMAND(IDM_VIEW_ZOOM_OUT,    OnViewZoomOut)
     ON_COMMAND(IDM_VIEW_ZOOM_FIT,    OnViewZoomFit)
+    ON_COMMAND(IDM_VIEW_ZOOM_RESET,  OnViewZoomReset)
+    ON_COMMAND(IDM_VIEW_TOGGLE_GRID,  OnViewToggleGrid)
     ON_COMMAND(IDM_TOOLS_FILTER,     OnToolsFilter)
     ON_COMMAND(IDM_TOOLS_DETECT_R,   OnToolsDetectR)
 END_MESSAGE_MAP()
@@ -945,6 +947,17 @@ void CECGViewerView::OnViewZoomOut()
 void CECGViewerView::OnViewZoomFit()
 {
     ZoomFit();
+}
+
+void CECGViewerView::OnViewZoomReset()
+{
+    ZoomReset();
+}
+
+void CECGViewerView::OnViewToggleGrid()
+{
+    m_bShowGrid = !m_bShowGrid;
+    Invalidate();
 }
 
 // ============================================================================

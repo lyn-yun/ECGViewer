@@ -4,7 +4,7 @@
 #include "Resource.h"
 #include "ECGViewerView.h"
 
-IMPLEMENT_DYNAMIC(CMainFrame, CFrameWnd)
+IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
     ON_WM_CREATE()
@@ -38,15 +38,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     // 创建工具栏
     if (!CreateToolBar())
     {
-        TRACE0("Failed to create toolbar\n");
-        return -1;
+        TRACE0("WARNING: Failed to create toolbar\n");
+        // 不 return -1，允许无工具栏运行
     }
 
     // 创建状态栏
     if (!CreateStatusBar())
     {
-        TRACE0("Failed to create status bar\n");
-        return -1;
+        TRACE0("WARNING: Failed to create status bar\n");
+        // 不 return -1，允许无状态栏运行
     }
 
     SetWindowText(_T("ECG Viewer v2 — 心电信号波形显示与交互分析系统"));
