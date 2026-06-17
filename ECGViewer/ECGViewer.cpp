@@ -61,46 +61,20 @@ BOOL CECGViewerApp::InitInstance()
     // 注册文档模板（Doc/View 架构）
     RegisterDocTemplate();
 
-    // Parse command line (supports drag-and-drop file open)
+    // 标准 MFC SDI 模式：由 ProcessShellCommand 统一创建文档和框架
+    //   FileNew  → OnFileNew()  → 创建空文档 + 框架（OnDraw 显示"请打开文件"）
+    //   FileOpen → OnFileOpen() → 打开指定文件 + 框架
+    // 不要手动 new CMainFrame + LoadFrame，否则 CCreateContext 断开，
+    // View 的 m_pDocument 为空，导致"创建空文档失败"。
     CCommandLineInfo cmdInfo;
     ParseCommandLine(cmdInfo);
 
-    // Create main frame window
-    CFrameWnd* pFrame = new CMainFrame;
-    if (!pFrame)
+    if (!ProcessShellCommand(cmdInfo))
         return FALSE;
 
-    m_pMainWnd = pFrame;
-
-    // Load frame (menu, toolbar, etc.)
-    if (!pFrame->LoadFrame(IDR_MAINFRAME,
-        WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
-        nullptr, nullptr))
-    {
-        return FALSE;
-    }
-
-    // If a file is specified on command line, open it.
-    // Otherwise skip ProcessShellCommand to avoid "create empty document" failure,
-    // since our app starts with an empty view showing "please open a file".
-    if (cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew)
-    {
-        // No file specified — just show the main window directly.
-        // OnDraw will display the "please open a file" prompt.
-    }
-    else
-    {
-        // File specified (e.g. drag-and-drop) — open it
-        if (!ProcessShellCommand(cmdInfo))
-        {
-            pFrame->DestroyWindow();
-            return FALSE;
-        }
-    }
-
-    // Show and update window
-    pFrame->ShowWindow(SW_SHOW);
-    pFrame->UpdateWindow();
+    // m_pMainWnd 已由 ProcessShellCommand 设置
+    m_pMainWnd->ShowWindow(SW_SHOW);
+    m_pMainWnd->UpdateWindow();
 
     return TRUE;
 }
