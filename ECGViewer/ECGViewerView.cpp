@@ -531,7 +531,8 @@ CPoint CECGViewerView::DataToScreen(double timeSec, double amplitude) const
     CRect rcPlot = GetPlotRect(GetClientRectDPI());
 
     int x = rcPlot.left + (int)(timeSec * m_pixelsPerSecond);
-    int y = rcPlot.top + (int)((0.0 - amplitude) * m_pixelsPerMillivolt);  // Y轴翻转（屏幕Y向下）
+    // Center 0mV vertically in the plot area; positive amplitude goes UP (screen Y decreases)
+    int y = rcPlot.CenterPoint().y - (int)(amplitude * m_pixelsPerMillivolt);
 
     return CPoint(x, y);
 }
@@ -541,7 +542,7 @@ void CECGViewerView::ScreenToData(CPoint ptScreen, double& timeSec, double& ampl
     CRect rcPlot = GetPlotRect(GetClientRectDPI());
 
     timeSec = (ptScreen.x - rcPlot.left) / m_pixelsPerSecond;
-    amplitude = -(ptScreen.y - rcPlot.top) / m_pixelsPerMillivolt;
+    amplitude = -(ptScreen.y - rcPlot.CenterPoint().y) / m_pixelsPerMillivolt;
 }
 
 CRect CECGViewerView::GetPlotRect(const CRect& rcClient) const
