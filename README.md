@@ -8,9 +8,10 @@
 
 ## 📸 程序截图
 
-> 运行后截个图放这里，替换下面这行
 
-![程序截图](screenshot.png)
+
+<img width="1426" height="1052" alt="image" src="https://github.com/user-attachments/assets/84d0df39-10e4-403a-9a08-f21115151a1c" />
+
 
 ---
 
