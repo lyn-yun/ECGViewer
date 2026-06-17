@@ -49,7 +49,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
         return -1;
     }
 
-    SetWindowText(_T("ECG Viewer — 心电信号波形显示与交互分析系统"));
+    SetWindowText(_T("ECG Viewer v2 — 心电信号波形显示与交互分析系统"));
 
     return 0;
 }
