@@ -1,0 +1,46 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+
+# Build output
+x64/
+Debug/
+Release/
+Win32/
+x86/
+out/
+build/
+
+# Generated files
+*.obj
+*.pch
+*.pdb
+*.ilk
+*.exp
+*.log
+*.tlog
+*.lastbuildstate
+*.idb
+*.res
+*.aps
+*.manifest
+
+# DLL copy in output
+ECGViewer/ECGFilterDLL.dll
+
+# NuGet
+packages/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
