@@ -61,18 +61,18 @@ BOOL CECGViewerApp::InitInstance()
     // 注册文档模板（Doc/View 架构）
     RegisterDocTemplate();
 
-    // 解析命令行（支持拖放文件打开）
+    // Parse command line (supports drag-and-drop file open)
     CCommandLineInfo cmdInfo;
     ParseCommandLine(cmdInfo);
 
-    // 创建主框架窗口
+    // Create main frame window
     CFrameWnd* pFrame = new CMainFrame;
     if (!pFrame)
         return FALSE;
 
     m_pMainWnd = pFrame;
 
-    // 加载框架（包括菜单、工具栏等资源）
+    // Load frame (menu, toolbar, etc.)
     if (!pFrame->LoadFrame(IDR_MAINFRAME,
         WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
         nullptr, nullptr))
@@ -80,14 +80,25 @@ BOOL CECGViewerApp::InitInstance()
         return FALSE;
     }
 
-    // 调度命令行
-    if (!ProcessShellCommand(cmdInfo))
+    // If a file is specified on command line, open it.
+    // Otherwise skip ProcessShellCommand to avoid "create empty document" failure,
+    // since our app starts with an empty view showing "please open a file".
+    if (cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew)
     {
-        pFrame->DestroyWindow();
-        return FALSE;
+        // No file specified — just show the main window directly.
+        // OnDraw will display the "please open a file" prompt.
+    }
+    else
+    {
+        // File specified (e.g. drag-and-drop) — open it
+        if (!ProcessShellCommand(cmdInfo))
+        {
+            pFrame->DestroyWindow();
+            return FALSE;
+        }
     }
 
-    // 显示并更新窗口
+    // Show and update window
     pFrame->ShowWindow(SW_SHOW);
     pFrame->UpdateWindow();
 
